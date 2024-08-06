@@ -21,6 +21,7 @@ const Header = () => {
                 type="text"
                 name="inputName"
                 placeholder="Search all assets"
+                className="w-96 h-12 border border-[#ECEFF1]"
               />
               <button type="submit" className="absolute left-2">
                 <i className="fa-solid fa-magnifying-glass text-lg text-[#AEBAE5]"></i>
@@ -28,7 +29,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex  w-full">
+        <div className="flex  mt-8 w-full">
           <div className="flex-1 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Top gainer (24h)</h1>
@@ -120,7 +121,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex  w-full">
+        <div className="flex w-full">
           <div className="flex-1 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Highest volume (24h)</h1>
