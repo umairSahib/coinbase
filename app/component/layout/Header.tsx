@@ -4,7 +4,7 @@ import Image from "next/image";
 const Header = () => {
   return (
     <>
-      <header className="pl-10 pr-10 pt-10">
+      <header className="pl-10 pr-6 pt-6">
         <div className="flex justify-between">
           <div>
             <h2 className="text-[#AEBAE5] font-normal text-sm">

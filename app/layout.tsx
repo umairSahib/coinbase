@@ -3,7 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./component/layout/Navbar";
 import Header from "./component/layout/Header";
-import { ClerkProvider } from "@clerk/nextjs";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
+import Navigation from "./component/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +27,15 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
-          {children}
+        <body>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
           <Navbar />
-          <Header />
+          {children}
         </body>
       </html>
     </ClerkProvider>
