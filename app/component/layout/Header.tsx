@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
@@ -21,10 +23,13 @@ const Header = () => {
                 type="text"
                 name="inputName"
                 placeholder="Search all assets"
-                className="w-96 h-12 border border-[#ECEFF1]"
+                className="w-96 h-12 border border-[#ECEFF1] pl-8 text-[#AEBAE5]"
               />
               <button type="submit" className="absolute left-2">
-                <i className="fa-solid fa-magnifying-glass text-lg text-[#AEBAE5]"></i>
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  className="fa-magnifying-glass text-lg text-[#AEBAE5]"
+                ></FontAwesomeIcon>
               </button>
             </div>
           </div>

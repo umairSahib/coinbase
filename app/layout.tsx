@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./component/layout/Navbar";
-import Header from "./component/layout/Header";
+
 import {
   ClerkProvider,
   SignInButton,
@@ -10,7 +10,6 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-import Navigation from "./component/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
