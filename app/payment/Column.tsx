@@ -9,14 +9,14 @@ import { faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 // This type is used to define the shape of our data. e.g we want our id to be string and status none other than these four options
 export type Payment = {
   name: string;
-  symbol: number;
+  symbol: string;
   price: number;
   change: number;
-  pricechart: number;
-  volume24h: number;
-  Marketcap: number;
-  supply: number;
-  trade: number;
+  price_change_24h: number;
+  current_price: number;
+  market_cap: number;
+  high_24h: number;
+  total_volume: number;
   image: string;
   // status: "pending" | "processing" | "success" | "failed";
 };
@@ -28,7 +28,9 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "name",
     accessorKey: "name",
-    header: <div className="text-[#113353] text-sm font-normal">Name</div>,
+    header: () => (
+      <div className="text-[#113353] text-sm font-normal">Name</div>
+    ),
     cell: ({
       row: {
         original: { name, symbol, image },
@@ -38,7 +40,7 @@ export const columns: ColumnDef<Payment>[] = [
         <div>
           <Image src={image} alt="photo" width={32} height={32} />
         </div>
-        <span className="text-base font-normal text-[#050F19]"> {name}</span>{" "}
+        <span className="text-base font-normal text-[#050F19]">{name}</span>{" "}
         <span className="text-[#11335399] text-sm font-normal">
           {" "}
           {symbol.toUpperCase()}
@@ -82,7 +84,9 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "Price",
     accessorKey: "current_price",
-    header: <div className="text-[#113353] text-sm font-normal">Price</div>,
+    header: () => (
+      <div className="text-[#113353] text-sm font-normal">Price</div>
+    ),
     cell: ({
       row: {
         original: { current_price },
@@ -92,7 +96,9 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "price_change_24h",
     accessorKey: "price_change_24h",
-    header: <div className="text-[#113353] text-sm font-normal">Change</div>,
+    header: () => (
+      <div className="text-[#113353] text-sm font-normal">Change</div>
+    ),
     cell: ({
       row: {
         original: { price_change_24h },
@@ -113,7 +119,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "high_24h",
     accessorKey: "high_24h",
-    header: (
+    header: () => (
       <div className="text-[#113353] text-sm font-normal">Volume(24h)</div>
     ),
     cell: ({
@@ -125,7 +131,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "market_cap",
     accessorKey: "market_cap",
-    header: (
+    header: () => (
       <div className="text-[#113353] text-sm font-normal">Market cap</div>
     ),
     cell: ({
@@ -137,7 +143,9 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "total_volume",
     accessorKey: "total_volume",
-    header: <div className="text-[#113353] text-sm font-normal">Supply</div>,
+    header: () => (
+      <div className="text-[#113353] text-sm font-normal">Supply</div>
+    ),
     cell: ({
       row: {
         original: { total_volume },
@@ -147,11 +155,13 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "last_updated",
     accessorKey: "last_updated",
-    header: <div className="text-[#113353] text-sm font-normal">Update</div>,
-    cell: ({ getValue }) => (
+    header: () => (
+      <div className="text-[#113353] text-sm font-normal">Update</div>
+    ),
+    cell: () => (
       <div className="flex justify-start">
         <div className="text-base font-normal ">
-          {dayjs(getValue()).format("YYYY-MM-DD")}
+          {dayjs().format("YYYY-MM-DD")}
         </div>
       </div>
     ),
