@@ -149,8 +149,8 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "last_updated",
     header: <div className="text-[#113353] text-sm font-normal">Update</div>,
     cell: ({ getValue }) => (
-      <div className="flex justify-center">
-        <div className="text-base font-normal">
+      <div className="flex justify-start">
+        <div className="text-base font-normal ">
           {dayjs(getValue()).format("YYYY-MM-DD")}
         </div>
       </div>
