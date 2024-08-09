@@ -4,7 +4,7 @@ import Image from "next/image";
 const Navigation = () => {
   return (
     <>
-      <div className="pt-6 pl-10 pr-6 flex justify-between ">
+      <div className="pt-6 pl-10 pr-10 flex justify-between ">
         <div className="flex gap-3">
           <button className="pt-1 pr-6 pb-1 pl-6 bg-[#F1F5FE] font-semibold text-sm text-[#0052FF] rounded-3xl">
             All assets

@@ -6,7 +6,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const Header = () => {
   return (
     <>
-      <header className="pl-10 pr-6 pt-6">
+      <header className="pl-10 pr-10 pt-6">
         <div className="flex justify-between">
           <div>
             <h2 className="text-[#AEBAE5] font-normal text-sm">
