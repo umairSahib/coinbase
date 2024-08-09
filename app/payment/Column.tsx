@@ -26,6 +26,9 @@ export const columns: ColumnDef<Payment>[] = [
   //we can set normal fields like this
 
   {
+    id: "name",
+    accessorKey: "name",
+    header: <div className="text-[#113353] text-sm font-normal">Name</div>,
     cell: ({
       row: {
         original: { name, symbol, image },
@@ -42,7 +45,6 @@ export const columns: ColumnDef<Payment>[] = [
         </span>
       </div>
     ),
-    header: "Name",
   },
   // {
   //   accessorKey: "name",
@@ -62,31 +64,99 @@ export const columns: ColumnDef<Payment>[] = [
   //   ),
   // },
 
+  // {
+  //   accessorKey: "ath_change_percentage",
+  //   header: "Ath_Change_Percentage ",
+  //   cell: ({
+  //     row: {
+  //       original: { ath_change_percentage },
+  //     },
+  //   }) => (
+  //     <div className="flex justify-center">
+  //       <div className="text-[#DF5F67] text-base font-normal ">
+  //         {ath_change_percentage}
+  //       </div>
+  //     </div>
+  //   ),
+  // },
   {
-    accessorKey: "ath",
-    header: "ath",
-  },
-  {
-    accessorKey: "price_change_24h",
-    header: "price_change_24h",
-  },
-  {
-    accessorKey: "low_24h",
-    header: "low_24h",
-  },
-  {
-    accessorKey: "market_cap",
-    header: "Market_cap",
-  },
-  {
+    id: "Price",
     accessorKey: "current_price",
-    header: "current_price",
+    header: <div className="text-[#113353] text-sm font-normal">Price</div>,
+    cell: ({
+      row: {
+        original: { current_price },
+      },
+    }) => <div className="text-base font-normal">{current_price}</div>,
   },
   {
+    id: "price_change_24h",
+    accessorKey: "price_change_24h",
+    header: <div className="text-[#113353] text-sm font-normal">Change</div>,
+    cell: ({
+      row: {
+        original: { price_change_24h },
+      },
+    }) => (
+      <div
+        className={
+          price_change_24h < 0
+            ? "text-[#DF5F67]"
+            : "text-[#3ACC8A] text-base font-normal "
+        }
+      >
+        {price_change_24h}
+      </div>
+    ),
+  },
+
+  {
+    id: "high_24h",
+    accessorKey: "high_24h",
+    header: (
+      <div className="text-[#113353] text-sm font-normal">Volume(24h)</div>
+    ),
+    cell: ({
+      row: {
+        original: { high_24h },
+      },
+    }) => <div className="text-base font-normal">{high_24h}</div>,
+  },
+  {
+    id: "market_cap",
+    accessorKey: "market_cap",
+    header: (
+      <div className="text-[#113353] text-sm font-normal">Market cap</div>
+    ),
+    cell: ({
+      row: {
+        original: { market_cap },
+      },
+    }) => <div className="text-base font-normal">{market_cap}</div>,
+  },
+  {
+    id: "total_volume",
+    accessorKey: "total_volume",
+    header: <div className="text-[#113353] text-sm font-normal">Supply</div>,
+    cell: ({
+      row: {
+        original: { total_volume },
+      },
+    }) => <div className="text-base font-normal">{total_volume}</div>,
+  },
+  {
+    id: "last_updated",
     accessorKey: "last_updated",
-    header: "last_updated",
-    cell: ({ getValue }) => dayjs(getValue()).format("YYYY-MM-DD"),
+    header: <div className="text-[#113353] text-sm font-normal">Update</div>,
+    cell: ({ getValue }) => (
+      <div className="flex justify-center">
+        <div className="text-base font-normal">
+          {dayjs(getValue()).format("YYYY-MM-DD")}
+        </div>
+      </div>
+    ),
   },
 ];
 // import { ColumnDef } from "@tanstack/react-table";
 // Update the path to your types file
+// ({ getValue }) => dayjs(getValue()).format("YYYY-MM-DD")
