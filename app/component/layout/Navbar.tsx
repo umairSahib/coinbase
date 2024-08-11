@@ -8,7 +8,7 @@ const Navbar = () => {
         <div>
           <Image src="/logo.png" alt="logoo" width={112} height={20} />
         </div>
-        <div>
+        <div className="md:hidden sm:hidden lg:flex xl:flex 2xl:flex  ">
           <ul className="flex gap-9 pl-81 pr-81 pt-0 pb-0 bg-[#ffffff]">
             <li className="font-semibold text-sm ">Prices</li>
             <li className="font-semibold text-sm ">Learn</li>

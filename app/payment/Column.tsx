@@ -18,13 +18,10 @@ export type Payment = {
   high_24h: number;
   total_volume: number;
   image: string;
-  // status: "pending" | "processing" | "success" | "failed";
 };
 const formattedDate = dayjs().format("YYYY-MM-DD");
 console.log("🚀 ~ formattedDate:", formattedDate);
 export const columns: ColumnDef<Payment>[] = [
-  //we can set normal fields like this
-
   {
     id: "name",
     accessorKey: "name",
@@ -66,21 +63,6 @@ export const columns: ColumnDef<Payment>[] = [
   //   ),
   // },
 
-  // {
-  //   accessorKey: "ath_change_percentage",
-  //   header: "Ath_Change_Percentage ",
-  //   cell: ({
-  //     row: {
-  //       original: { ath_change_percentage },
-  //     },
-  //   }) => (
-  //     <div className="flex justify-center">
-  //       <div className="text-[#DF5F67] text-base font-normal ">
-  //         {ath_change_percentage}
-  //       </div>
-  //     </div>
-  //   ),
-  // },
   {
     id: "Price",
     accessorKey: "current_price",

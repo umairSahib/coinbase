@@ -34,8 +34,8 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex  mt-8 w-full">
-          <div className="flex-1 border border-[#ECEFF1]">
+        <div className="flex sm:flex-col  mt-8 w-full">
+          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Top gainer (24h)</h1>
             </div>
@@ -72,7 +72,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="flex-1 border border-[#ECEFF1]">
+          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">New listing</h1>
             </div>
@@ -109,7 +109,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="flex-1 border border-[#ECEFF1] bg-[#B8C9C8]">
+          <div className="flex-1 sm:mt-2 border border-[#ECEFF1] bg-[#B8C9C8]">
             <div className="flex justify-between  mt-8 ml-6 mr-6 ">
               <div className="mb-4">
                 <h1 className="font-semibold text-base max-w-52">
@@ -126,8 +126,8 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex w-full">
-          <div className="flex-1 border border-[#ECEFF1]">
+        <div className="flex sm:flex-col w-full">
+          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Highest volume (24h)</h1>
             </div>
@@ -164,7 +164,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="flex-1 border border-[#ECEFF1]">
+          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Most visited (24h)</h1>
             </div>
@@ -201,7 +201,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="flex-1 border border-[#ECEFF1]">
+          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Earn free crypto</h1>
             </div>
