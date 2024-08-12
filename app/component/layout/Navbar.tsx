@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, SignInButton } from "@clerk/nextjs";
 
 const Navbar = () => {
   return (
@@ -20,12 +20,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex gap-3 items-center text-center">
-          <button>
+          <button className=" rounded pt-2 pl-3 pb-2 pr-3 text-[#FFFFFF] font-bold text-sm ">
             <UserButton showName />
           </button>
-          <button className="bg-[#0052FF] rounded pt-2 pl-3 pb-2 pr-3 text-[#FFFFFF] font-bold text-sm ">
-            Get Started
-          </button>
+          {/* <button className="bg-[#0052FF] rounded pt-2 pl-3 pb-2 pr-3 text-[#FFFFFF] font-bold text-sm "></button> */}
         </div>
       </nav>
     </>
