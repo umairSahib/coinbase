@@ -34,7 +34,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex sm:flex-col  mt-8 w-full">
+        <div className="flex sm:flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 2xl:grid 2xl:grid-cols-3 mt-8">
           <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Top gainer (24h)</h1>
@@ -126,7 +126,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex sm:flex-col w-full">
+        <div className="flex sm:flex-col w-full md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 2xl:grid 2xl:grid-cols-3">
           <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Highest volume (24h)</h1>

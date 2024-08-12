@@ -37,7 +37,9 @@ export const columns: ColumnDef<Payment>[] = [
         <div>
           <Image src={image} alt="photo" width={32} height={32} />
         </div>
-        <span className="text-base font-normal text-[#050F19]">{name}</span>{" "}
+        <span className="text-base font-normal text-[#050F19] whitespace-pre">
+          {name}
+        </span>{" "}
         <span className="text-[#11335399] text-sm font-normal">
           {" "}
           {symbol.toUpperCase()}
@@ -142,7 +144,7 @@ export const columns: ColumnDef<Payment>[] = [
     ),
     cell: () => (
       <div className="flex justify-start">
-        <div className="text-base font-normal ">
+        <div className="text-base font-normal whitespace-pre">
           {dayjs().format("YYYY-MM-DD")}
         </div>
       </div>
