@@ -39,9 +39,8 @@ export const columns: ColumnDef<Payment>[] = [
         </div>
         <span className="text-base font-normal text-[#050F19] whitespace-pre">
           {name}
-        </span>{" "}
+        </span>
         <span className="text-[#11335399] text-sm font-normal">
-          {" "}
           {symbol.toUpperCase()}
         </span>
       </div>

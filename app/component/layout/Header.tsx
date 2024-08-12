@@ -127,7 +127,7 @@ const Header = () => {
           </div>
         </div>
         <div className="flex sm:flex-col w-full md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 2xl:grid 2xl:grid-cols-3">
-          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
+          <div className="flex-1 sm:mt-2 md:mt-2 lg:mt-0 2xl:mt-0 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Highest volume (24h)</h1>
             </div>
@@ -164,7 +164,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
+          <div className="flex-1 sm:mt-2 md:mt-2 lg:mt-0 2xl:mt-0 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Most visited (24h)</h1>
             </div>
@@ -201,7 +201,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
+          <div className="flex-1 sm:mt-2 md:mt-2 lg:mt-0 2xl:mt-0 border border-[#ECEFF1]">
             <div className="mt-4 ml-6">
               <h1 className="text-base font-semibold">Earn free crypto</h1>
             </div>
