@@ -44,19 +44,4 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
-{
-  /* <html lang="en">
-  <body className={inter.className}>
-    <header>
-      <SignedOut>
-        <SignIn routing="hash" />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-        {children}
-      </SignedIn>
-    </header>
-    <main></main>
-  </body>
-</html>; */
-}
+

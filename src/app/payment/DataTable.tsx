@@ -94,31 +94,31 @@ export function DataTable<TData, TValue>({
       </div>
       <div className="flex gap-4 items-center justify-center mt-8">
         <button
-          className="rounded-full p-4 bg-[#0052FF] text-white w-8 h-8 flex justify-center items-center "
+          className="rounded-full active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white  w-8 h-8 flex justify-center items-center "
           onClick={() => table.nextPage()}
         >
           1
         </button>
         <button
-          className="rounded-full w-8 h-8  flex justify-center items-center "
+          className="rounded-full w-8 h-8 active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white flex justify-center items-center "
           onClick={() => table.nextPage()}
         >
           2
         </button>
         <button
-          className="rounded-full  w-8 h-8  flex justify-center items-center "
+          className="rounded-full  w-8 h-8 active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white flex justify-center items-center "
           onClick={() => table.nextPage()}
         >
           3
         </button>
         <button
-          className="rounded-full  w-8 h-8  flex justify-center items-center "
+          className="rounded-full  w-8 h-8 active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white flex justify-center items-center "
           onClick={() => table.nextPage()}
         >
           ...
         </button>
         <button
-          className="rounded-full w-8 h-8 bg-[#0052FF] text-white flex justify-center items-center "
+          className="rounded-full w-8 h-8 active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white flex justify-center items-center "
           onClick={() => table.previousPage()}
         >
           <FontAwesomeIcon
