@@ -28,20 +28,21 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <header>
+          <header></header>
+          <main>
             <SignedOut>
-              <SignIn routing="hash" />
+              <div className="flex justify-center ">
+                <SignIn routing="hash" />
+              </div>
             </SignedOut>
             <SignedIn>
               {/* <UserButton /> */}
               <Navbar />
               {children}
             </SignedIn>
-          </header>
-          <main></main>
+          </main>
         </body>
       </html>
     </ClerkProvider>
   );
 }
-
