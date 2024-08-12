@@ -17,7 +17,7 @@ const Header = () => {
             </h1>
           </div>
 
-          <div className="relative ">
+          <div className="relative sm:hidden md:flex lg:flex 2xl:flex ">
             <div className="flex items-center">
               <input
                 type="text"
