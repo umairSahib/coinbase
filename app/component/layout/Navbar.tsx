@@ -20,8 +20,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex gap-3 items-center text-center">
-          <button className=" rounded pt-2 pl-3 pb-2 pr-3 text-[#FFFFFF] font-bold text-sm ">
+          <button>
             <UserButton showName />
+            {/* <SignInButton /> */}
           </button>
           {/* <button className="bg-[#0052FF] rounded pt-2 pl-3 pb-2 pr-3 text-[#FFFFFF] font-bold text-sm "></button> */}
         </div>

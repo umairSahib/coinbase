@@ -29,9 +29,7 @@ export default function RootLayout({
         <body>
           {/* <UserButton showName /> */}
 
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
+          <SignedOut>{/* <SignInButton /> */}</SignedOut>
           <SignedIn></SignedIn>
           <Navbar />
           {children}
