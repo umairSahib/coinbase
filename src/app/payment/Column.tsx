@@ -3,8 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import dayjs from "utils/DateUtils";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // This type is used to define the shape of our data. e.g we want our id to be string and status none other than these four options
 export type Payment = {
@@ -150,6 +148,5 @@ export const columns: ColumnDef<Payment>[] = [
     ),
   },
 ];
-// import { ColumnDef } from "@tanstack/react-table";
-// Update the path to your types file
+
 // ({ getValue }) => dayjs(getValue()).format("YYYY-MM-DD")

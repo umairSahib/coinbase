@@ -1,5 +1,5 @@
 "use client";
-//we have to import a lot of things and here are they
+
 import {
   ColumnDef,
   flexRender,
@@ -19,7 +19,6 @@ import {
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-//now we are expecting 2 props: columns and the data(that we are expecting from the page component)
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -29,35 +28,30 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  // and now we will use this useReactTable hook
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-
-    // and yes adding pagination can be done with just this above one line
   });
 
   return (
     <>
-      <div className="rounded-md border">
-        <Table>
+      <div className="3xl:w-full rounded-md border overflow-x-auto">
+        <Table className="3xl:w-full">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
@@ -90,41 +84,48 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
-        {/* //now to use the pagination we will use the buttons */}
       </div>
-      <div className="flex gap-4 items-center justify-center mt-8">
+      <div className="flex flex-wrap gap-4 items-center justify-center mt-8 w-full px-4">
         <button
-          className="rounded-full active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white  w-8 h-8 flex justify-center items-center "
-          onClick={() => table.nextPage()}
+          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          onClick={() => table.previousPage()}
+        >
+          <FontAwesomeIcon icon={faChevronLeft} className="text-lg" />
+        </button>
+        <button
+          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          onClick={() => table.setPageIndex(0)}
         >
           1
         </button>
         <button
-          className="rounded-full w-8 h-8 active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white flex justify-center items-center "
-          onClick={() => table.nextPage()}
+          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          onClick={() => table.setPageIndex(1)}
         >
           2
         </button>
         <button
-          className="rounded-full  w-8 h-8 active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white flex justify-center items-center "
-          onClick={() => table.nextPage()}
+          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          onClick={() => table.setPageIndex(2)}
         >
           3
         </button>
         <button
-          className="rounded-full  w-8 h-8 active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white flex justify-center items-center "
-          onClick={() => table.nextPage()}
+          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          onClick={() => {
+            /* Add logic for more pages if needed */
+          }}
         >
           ...
         </button>
         <button
-          className="rounded-full w-8 h-8 active:bg-[#0052FF] focus:bg-[#0052FF] focus:text-white flex justify-center items-center "
-          onClick={() => table.previousPage()}
+          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          onClick={() => table.nextPage()}
         >
           <FontAwesomeIcon
             icon={faChevronLeft}
-            className="fa-chevron-left text-lg text-[#AEBAE5]"
-          ></FontAwesomeIcon>
+            className="text-lg rotate-180"
+          />
         </button>
       </div>
     </>
