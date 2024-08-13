@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./component/layout/Navbar";
-
 import {
   ClerkProvider,
-  SignInButton,
+  SignIn,
+  SignUp,
   SignedIn,
   SignedOut,
-  UserButton,
-  SignIn,
+  // UserButton,
 } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,12 +30,19 @@ export default function RootLayout({
           <header></header>
           <main>
             <SignedOut>
-              <div className="flex justify-center ">
-                <SignIn routing="hash" />
+              {/*
+                Render the SignUp component when the user is signed out
+              */}
+              <div className="flex justify-center h-screen w-auto place-items-center">
+                <SignUp path="path" />
+                {/* You can customize the routing here */}
               </div>
             </SignedOut>
             <SignedIn>
-              {/* <UserButton /> */}
+              {/* 
+                <UserButton />
+                You can add User specific content or components here
+              */}
               <Navbar />
               {children}
             </SignedIn>
