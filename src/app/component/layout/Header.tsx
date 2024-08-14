@@ -12,17 +12,13 @@ const Header = () => {
     highestVol: 0,
     lowVolme: 0,
   });
-  console.log("🚀 ~ Header ~ field:", field);
 
   useEffect(() => {
-    // Check if data is available
     if (data.length > 0) {
-      // Initialize temporary variables to track the desired values
       let tempTopGainer = field.topGainer;
       let tempHighestVol = field.highestVol;
       let tempLowVolme = field.lowVolme;
 
-      // Loop through the data to find the max/min values
       data.forEach((element: any) => {
         if (tempTopGainer < element.price_change_24h) {
           tempTopGainer = element.price_change_24h;
@@ -43,7 +39,6 @@ const Header = () => {
         lowVolme: tempLowVolme,
       }));
 
-      // Debugging logs
       console.log("top-gainer", tempTopGainer);
       console.log("highestVol", tempHighestVol);
       console.log("lowVolme:", tempLowVolme);
@@ -78,7 +73,7 @@ const Header = () => {
     };
 
     fetchData();
-  }, []);
+  }, [data, field.highestVol, field.lowVolme, field.topGainer]);
 
   return (
     <>
