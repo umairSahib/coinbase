@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 // Assuming the Payment type is imported from the "./Column" file
 import { Payment, columns } from "./Column";
 import { DataTable } from "./DataTable";
+import Header from "../component/layout/Header";
 
 async function getData(): Promise<Payment[]> {
   const options = {
@@ -26,6 +27,7 @@ async function getData(): Promise<Payment[]> {
     }
 
     const data = await response.json();
+
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -41,6 +43,7 @@ export default function DemoPage() {
     const fetchData = async () => {
       const result = await getData();
       setData(result);
+
       console.log(result, "results");
     };
 

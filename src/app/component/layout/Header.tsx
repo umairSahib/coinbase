@@ -1,9 +1,85 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
 
 const Header = () => {
+  const [data, setData] = useState<any>([]);
+  let [field, setField] = useState({
+    topGainer: 0,
+    highestVol: 0,
+    lowVolme: 0,
+  });
+  console.log("🚀 ~ Header ~ field:", field);
+
+  useEffect(() => {
+    // Check if data is available
+    if (data.length > 0) {
+      // Initialize temporary variables to track the desired values
+      let tempTopGainer = field.topGainer;
+      let tempHighestVol = field.highestVol;
+      let tempLowVolme = field.lowVolme;
+
+      // Loop through the data to find the max/min values
+      data.forEach((element: any) => {
+        if (tempTopGainer < element.price_change_24h) {
+          tempTopGainer = element.price_change_24h;
+        }
+        if (tempHighestVol < element.total_volume) {
+          tempHighestVol = element.total_volume;
+        }
+        if (tempLowVolme > element.low_24h) {
+          tempLowVolme = element.low_24h;
+        }
+      });
+
+      // Update state once after the loop
+      setField((prevState) => ({
+        ...prevState,
+        topGainer: tempTopGainer,
+        highestVol: tempHighestVol,
+        lowVolme: tempLowVolme,
+      }));
+
+      // Debugging logs
+      console.log("top-gainer", tempTopGainer);
+      console.log("highestVol", tempHighestVol);
+      console.log("lowVolme:", tempLowVolme);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const results = await response.json();
+        if (results.length > 0) {
+          setField({
+            topGainer: results[0].price_change_24h,
+            highestVol: results[0].total_volume,
+            lowVolme: results[0].low_24h,
+          });
+        }
+
+        // console.log("🚀 ~ fetchData ~ results:", results);
+        setData(results);
+      } catch (error) {
+        console.error("data ka error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <header className="pl-10 pr-10 pt-6">
@@ -17,7 +93,7 @@ const Header = () => {
             </h1>
           </div>
 
-          <div className="relative sm:hidden md:flex lg:flex 2xl:flex ">
+          <div className="relative sm:hidden md:flex lg:flex 2xl:flex">
             <div className="flex items-center">
               <input
                 type="text"
@@ -34,203 +110,86 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex sm:flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 2xl:grid 2xl:grid-cols-3 mt-8">
-          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
-            <div className="mt-4 ml-6">
-              <h1 className="text-base font-semibold">Top gainer (24h)</h1>
-            </div>
-            <div className="flex justify-between items-center mt-6 mb-4 ml-6 mr-6">
-              <div className="flex items-center gap-4">
-                <div>
-                  <Image
-                    src="/polygon.png"
-                    width={32}
-                    height={32}
-                    alt="logoo"
-                  />
-                </div>
-                <div>
-                  <h1 className="text-[#050F19] text-base font-normal">
-                    Polygon
-                  </h1>
-                  <h2 className="font-normal text-sm text-[#3ACC8A] mt-1">
-                    +30.33%
-                  </h2>
-                </div>
-              </div>
-              <div>
-                <h1 className="text-[#050F19] text-base font-normal">
-                  TRY 17.91
-                </h1>
-                <Image
-                  className="mt-1"
-                  src="/chart5.png"
-                  alt="chart"
-                  width={60}
-                  height={14}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex-1 sm:mt-2 border border-[#ECEFF1]">
-            <div className="mt-4 ml-6">
-              <h1 className="text-base font-semibold">New listing</h1>
-            </div>
-            <div className="flex justify-between items-center mt-6 mb-4 ml-6 mr-6">
-              <div className="flex items-center gap-4">
-                <div>
-                  <Image
-                    src="/internet.png"
-                    width={32}
-                    height={32}
-                    alt="logoo"
-                  />
-                </div>
-                <div>
-                  <h1 className="text-[#050F19] text-base font-normal">
-                    Internet Computer
-                  </h1>
-                  <h2 className="font-normal text-sm text-[#11335399] mt-1">
-                    Added May 10
-                  </h2>
-                </div>
-              </div>
-              <div>
-                <h1 className="text-[#050F19] text-base font-normal">
-                  TRY 1,659.11
-                </h1>
-                <Image
-                  className="mt-1"
-                  src="/chart5.png"
-                  alt="chart"
-                  width={60}
-                  height={14}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex-1 sm:mt-2 border border-[#ECEFF1] bg-[#B8C9C8]">
-            <div className="flex justify-between  mt-8 ml-6 mr-6 ">
-              <div className="mb-4">
-                <h1 className="font-semibold text-base max-w-52">
-                  Crypto questions, answered
-                </h1>
-                <h2 className="font-normal text-sm mt-2">
-                  Learn with Coinbase
-                </h2>
-              </div>
 
-              <div>
-                <Image src="/learn.png" alt="photo" width={113} height={95} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex sm:flex-col w-full md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 2xl:grid 2xl:grid-cols-3">
-          <div className="flex-1 sm:mt-2 md:mt-2 lg:mt-0 2xl:mt-0 border border-[#ECEFF1]">
-            <div className="mt-4 ml-6">
-              <h1 className="text-base font-semibold">Highest volume (24h)</h1>
-            </div>
-            <div className="flex justify-between items-center mt-6 mb-4 ml-6 mr-6">
-              <div className="flex items-center gap-4">
-                <div>
-                  <Image
-                    src="/bitcoin.png"
-                    width={32}
-                    height={32}
-                    alt="logoo"
-                  />
+        <div className="flex sm:flex-col  md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 2xl:grid 2xl:grid-cols-2 mt-8">
+          {data.map(
+            (item: any, index: any) =>
+              (item.price_change_24h === field.topGainer ||
+                item.low_24h === field.lowVolme ||
+                item.total_volume === field.highestVol) && (
+                <div className="border border-[#ECEFF1]">
+                  <div>
+                    <h1 className="text-base font-semibold text-[#050F19] mt-4 ml-6">
+                      {item.price_change_24h === field.topGainer
+                        ? "Top gainer (24h)"
+                        : item.low_24h === field.lowVolme
+                        ? "Lowest (24h)"
+                        : item.total_volume === field.highestVol
+                        ? "Highest volume (24h)"
+                        : ""}
+                    </h1>
+                  </div>
+                  <div
+                    key={index}
+                    className="flex justify-between items-center mt-6 mb-4 ml-6 mr-6"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div>
+                        <Image
+                          src={item.image}
+                          width={32}
+                          height={32}
+                          alt={item.name}
+                        />
+                      </div>
+                      <div>
+                        <h1 className="text-[#050F19] text-base font-normal">
+                          {item.name}
+                        </h1>
+                        <h2
+                          className={`font-normal text-sm mt-1 ${
+                            item.price_change_percentage_24h < 0
+                              ? "text-[#DF5F67]"
+                              : "text-[#3ACC8A]"
+                          }`}
+                        >
+                          {item.price_change_percentage_24h.toFixed(2)}%
+                        </h2>
+                      </div>
+                    </div>
+                    <div>
+                      <h1 className="text-[#050F19] text-base font-normal">
+                        $ {item.current_price}
+                      </h1>
+                      <Image
+                        className="mt-1"
+                        src="/chart5.png"
+                        alt="chart"
+                        width={60}
+                        height={14}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h1 className="text-[#050F19] text-base font-normal">
-                    Bitcoin
-                  </h1>
-                  <h2 className="font-normal text-sm text-[#11335399] mt-1">
-                    TRY 536.94B
-                  </h2>
-                </div>
-              </div>
-              <div>
-                <h1 className="text-[#050F19] text-base font-normal">
-                  TRY 368,262.78
-                </h1>
-                <Image
-                  className="mt-1"
-                  src="/chart5.png"
-                  alt="chart"
-                  width={60}
-                  height={14}
-                />
-              </div>
+              )
+          )}
+          <div className="flex justify-between pt-8  bg-[#B8C9C8] border border-[#ECEFF1]">
+            <div>
+              <h1 className="font-semibold text-base text-black max-w-48 ml-6">
+                Crypto questions, answered
+              </h1>
+              <h2 className="font-normal text-sm ml-6 mt-2">
+                Learn with Coinbase
+              </h2>
             </div>
-          </div>
-          <div className="flex-1 sm:mt-2 md:mt-2 lg:mt-0 2xl:mt-0 border border-[#ECEFF1]">
-            <div className="mt-4 ml-6">
-              <h1 className="text-base font-semibold">Most visited (24h)</h1>
-            </div>
-            <div className="flex justify-between items-center mt-6 mb-4 ml-6 mr-6">
-              <div className="flex items-center gap-4">
-                <div>
-                  <Image
-                    src="/numeraire.png"
-                    width={32}
-                    height={32}
-                    alt="logoo"
-                  />
-                </div>
-                <div>
-                  <h1 className="text-[#050F19] text-base font-normal">
-                    Numeraire
-                  </h1>
-                  <h2 className="font-normal text-sm text-[#3ACC8A]  mt-1">
-                    +4.441.2% <span className=" text-[#11335399]">views</span>
-                  </h2>
-                </div>
-              </div>
-              <div>
-                <h1 className="text-[#050F19] text-base font-normal">
-                  TRY 581.86
-                </h1>
-                <Image
-                  className="mt-1"
-                  src="/chart5.png"
-                  alt="chart"
-                  width={60}
-                  height={14}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex-1 sm:mt-2 md:mt-2 lg:mt-0 2xl:mt-0 border border-[#ECEFF1]">
-            <div className="mt-4 ml-6">
-              <h1 className="text-base font-semibold">Earn free crypto</h1>
-            </div>
-            <div className="flex justify-between items-center mt-6 mb-4 ml-6 mr-6">
-              <div className="flex items-center gap-4">
-                <div>
-                  <Image src="/xrp.png" width={32} height={32} alt="logoo" />
-                </div>
-                <div>
-                  <h1 className="text-[#050F19] text-base font-normal">
-                    SKALE
-                  </h1>
-                  <h2 className="font-normal text-sm text-[#11335399] mt-1">
-                    Earn $3 in SKL
-                  </h2>
-                </div>
-              </div>
-              <div>
-                <h1 className="text-[#050F19] text-base font-normal">
-                  TRY 10.31
-                </h1>
-                <Image
-                  className="mt-1"
-                  src="/chart5.png"
-                  alt="chart"
-                  width={60}
-                  height={14}
-                />
-              </div>
+            <div>
+              <Image
+                className="ml-6 mb-0"
+                src="/learn.png"
+                alt="pic"
+                width={113}
+                height={95}
+              />
             </div>
           </div>
         </div>

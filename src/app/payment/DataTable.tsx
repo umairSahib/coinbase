@@ -87,39 +87,37 @@ export function DataTable<TData, TValue>({
       </div>
       <div className="flex flex-wrap gap-4 items-center justify-center mt-8 w-full px-4">
         <button
-          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
           onClick={() => table.previousPage()}
         >
           <FontAwesomeIcon icon={faChevronLeft} className="text-lg" />
         </button>
         <button
-          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
           onClick={() => table.setPageIndex(0)}
         >
           1
         </button>
         <button
-          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
           onClick={() => table.setPageIndex(1)}
         >
           2
         </button>
         <button
-          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
           onClick={() => table.setPageIndex(2)}
         >
           3
         </button>
         <button
-          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
-          onClick={() => {
-            /* Add logic for more pages if needed */
-          }}
+          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
+          onClick={() => {}}
         >
           ...
         </button>
         <button
-          className="rounded-full w-8 h-8 flex justify-center items-center bg-[#0052FF] text-white hover:bg-[#0041a3] focus:outline-none focus:ring-2 focus:ring-[#0052FF] transition-colors duration-300"
+          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
           onClick={() => table.nextPage()}
         >
           <FontAwesomeIcon

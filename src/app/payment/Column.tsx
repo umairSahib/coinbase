@@ -4,7 +4,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import dayjs from "utils/DateUtils";
 
-// This type is used to define the shape of our data. e.g we want our id to be string and status none other than these four options
 export type Payment = {
   name: string;
   symbol: string;
@@ -18,7 +17,7 @@ export type Payment = {
   image: string;
 };
 const formattedDate = dayjs().format("YYYY-MM-DD");
-console.log("🚀 ~ formattedDate:", formattedDate);
+
 export const columns: ColumnDef<Payment>[] = [
   {
     id: "name",
@@ -44,23 +43,6 @@ export const columns: ColumnDef<Payment>[] = [
       </div>
     ),
   },
-  // {
-  //   accessorKey: "name",
-  //   header: "Name",
-  // },
-  // {
-  //   accessorKey: "symbol",
-  //   header: "Symbol",
-  // },
-  // {
-  //   accessorKey: "image",
-  //   header: "Image",
-  //   cell: ({ getValue }) => (
-  //     <div className="flex items-center justify-center">
-  //       <Image src={getValue()} alt="photo" width={30} height={30} />
-  //     </div>
-  //   ),
-  // },
 
   {
     id: "Price",
@@ -72,7 +54,14 @@ export const columns: ColumnDef<Payment>[] = [
       row: {
         original: { current_price },
       },
-    }) => <div className="text-base font-normal">{current_price}</div>,
+    }) => (
+      <div className="text-base font-normal">
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(current_price)}
+      </div>
+    ),
   },
   {
     id: "price_change_24h",
@@ -88,11 +77,11 @@ export const columns: ColumnDef<Payment>[] = [
       <div
         className={
           price_change_24h < 0
-            ? "text-[#DF5F67]"
+            ? "text-[#DF5F67] text-base font-normal"
             : "text-[#3ACC8A] text-base font-normal "
         }
       >
-        {price_change_24h}
+        {price_change_24h.toFixed(2)}%
       </div>
     ),
   },
@@ -119,7 +108,14 @@ export const columns: ColumnDef<Payment>[] = [
       row: {
         original: { market_cap },
       },
-    }) => <div className="text-base font-normal">{market_cap}</div>,
+    }) => (
+      <div className="text-base font-normal">
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(market_cap)}
+      </div>
+    ),
   },
   {
     id: "total_volume",
@@ -131,7 +127,14 @@ export const columns: ColumnDef<Payment>[] = [
       row: {
         original: { total_volume },
       },
-    }) => <div className="text-base font-normal">{total_volume}</div>,
+    }) => (
+      <div className="text-base font-normal">
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(total_volume)}
+      </div>
+    ),
   },
   {
     id: "last_updated",
@@ -148,5 +151,6 @@ export const columns: ColumnDef<Payment>[] = [
     ),
   },
 ];
+
 
 // ({ getValue }) => dayjs(getValue()).format("YYYY-MM-DD")
