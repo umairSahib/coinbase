@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Payment, columns } from "./Column";
 import { DataTable } from "./DataTable";
+import Navigation from "../component/Navigation";
 
 async function getData(): Promise<Payment[]> {
   const options = {
@@ -23,6 +24,7 @@ async function getData(): Promise<Payment[]> {
     }
 
     const data = await response.json();
+    console.log("🚀 ~ getData ~ data:", data);
 
     return data;
   } catch (error) {
@@ -44,10 +46,22 @@ export default function DemoPage() {
 
     fetchData();
   }, []);
-
+  function handleFilterData(val: string) {
+    if (val === "Tradable") {
+      const tradAble = data.filter(
+        (obj) => obj.price_change_percentage_24h > 0
+      );
+      console.log("🚀 ~ tradAble ~ tradAble:", tradAble);
+    }
+    if (val === "Gainers") {
+    }
+  }
   return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
-    </div>
+    <>
+      <Navigation handleFilterData={handleFilterData} />
+      <div className="container mx-auto py-10">
+        <DataTable columns={columns} data={data} />
+      </div>
+    </>
   );
 }

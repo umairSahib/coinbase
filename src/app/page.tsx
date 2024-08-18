@@ -14,8 +14,8 @@ const page = () => {
     <>
       {/* <Navbar /> */}
       <Header />
-      <Navigation />
       <Page />
+      {/* <Navigation /> */}
     </>
   );
 };

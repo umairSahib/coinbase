@@ -83,8 +83,14 @@ const Header: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-base font-normal">{topGainer.name}</h1>
-                <h2 className="text-sm font-normal mt-1 text-[#3ACC8A]">
-                  %{topGainer.price_change_percentage_24h}
+                <h2
+                  className={`text-sm font-normal mt-1 ${
+                    topGainer.price_change_percentage_24h < 0
+                      ? "text-red-500"
+                      : "text-[#3ACC8A]"
+                  }`}
+                >
+                  {topGainer.price_change_percentage_24h}%
                 </h2>
               </div>
             </div>
@@ -114,8 +120,14 @@ const Header: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-base font-normal">{highestVolume.name}</h1>
-                <h2 className="text-sm font-normal mt-1 text-[#3ACC8A]">
-                  %{highestVolume.price_change_percentage_24h}
+                <h2
+                  className={`text-sm font-normal mt-1 ${
+                    highestVolume.price_change_percentage_24h < 0
+                      ? "text-red-500"
+                      : "text-[#3ACC8A]"
+                  }`}
+                >
+                  {highestVolume.price_change_percentage_24h}%
                 </h2>
               </div>
             </div>
@@ -145,8 +157,14 @@ const Header: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-base font-normal">{lowestVolume.name}</h1>
-                <h2 className="text-sm font-normal mt-1 text-[#3ACC8A]">
-                  %{lowestVolume.price_change_percentage_24h}
+                <h2
+                  className={`text-sm font-normal mt-1 ${
+                    lowestVolume.price_change_percentage_24h < 0
+                      ? "text-red-500"
+                      : "text-[#3ACC8A]"
+                  }`}
+                >
+                  {lowestVolume.price_change_percentage_24h}%
                 </h2>
               </div>
             </div>
