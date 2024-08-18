@@ -9,7 +9,7 @@ export type Payment = {
   symbol: string;
   price: number;
   change: number;
-  price_change_24h: number;
+  price_change_percentage_24h: number;
   current_price: number;
   market_cap: number;
   high_24h: number;
@@ -71,17 +71,17 @@ export const columns: ColumnDef<Payment>[] = [
     ),
     cell: ({
       row: {
-        original: { price_change_24h },
+        original: { price_change_percentage_24h },
       },
     }) => (
       <div
         className={
-          price_change_24h < 0
+          price_change_percentage_24h < 0
             ? "text-[#DF5F67] text-base font-normal"
             : "text-[#3ACC8A] text-base font-normal "
         }
       >
-        {price_change_24h.toFixed(2)}%
+        {price_change_percentage_24h.toFixed(2)}%
       </div>
     ),
   },
@@ -151,6 +151,5 @@ export const columns: ColumnDef<Payment>[] = [
     ),
   },
 ];
-
 
 // ({ getValue }) => dayjs(getValue()).format("YYYY-MM-DD")

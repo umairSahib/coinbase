@@ -1,10 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
-// Assuming the Payment type is imported from the "./Column" file
 import { Payment, columns } from "./Column";
 import { DataTable } from "./DataTable";
-import Header from "../component/layout/Header";
 
 async function getData(): Promise<Payment[]> {
   const options = {
@@ -15,8 +12,7 @@ async function getData(): Promise<Payment[]> {
     },
   };
 
-  // Include vs_currency parameter in the URL
-  const vsCurrency = "usd"; // Example currency, you can replace it with the currency you want to use
+  const vsCurrency = "usd";
 
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${vsCurrency}`;
 
@@ -31,13 +27,12 @@ async function getData(): Promise<Payment[]> {
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
-    return []; // Return empty array or handle the error as needed
+    return [];
   }
 }
 
-// The DemoPage component asynchronously fetches and displays data
 export default function DemoPage() {
-  const [data, setData] = useState<Payment[]>([]); // Initialize data state
+  const [data, setData] = useState<Payment[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +43,7 @@ export default function DemoPage() {
     };
 
     fetchData();
-  }, []); // Empty dependency array ensures the effect runs only once
+  }, []);
 
   return (
     <div className="container mx-auto py-10">

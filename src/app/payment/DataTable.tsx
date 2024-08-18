@@ -85,6 +85,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+      {/* pagination */}
       <div className="flex flex-wrap gap-4 items-center justify-center mt-8 w-full px-4">
         <button
           className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
@@ -125,6 +126,19 @@ export function DataTable<TData, TValue>({
             className="text-lg rotate-180"
           />
         </button>
+        <select
+          value={table.getState().pagination.pageSize}
+          onChange={(e) => {
+            table.setPageSize(Number(e.target.value));
+            console.log(table.getPageCount());
+          }}
+        >
+          {[10, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              {pageSize}
+            </option>
+          ))}
+        </select>
       </div>
     </>
   );
