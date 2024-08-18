@@ -35,6 +35,83 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
+  const CustomPagination = () => {
+    const { pageIndex } = table.getState().pagination;
+    const totalPages = 172; // Total pages are set to 172
+
+    const paginationItems = [];
+
+    const renderPageButton = (page: number) => (
+      <button
+        key={page}
+        className={`rounded-full w-8 h-8 flex justify-center items-center ${
+          pageIndex === page ? "text-white bg-[#0041a3]" : ""
+        }`}
+        onClick={() => table.setPageIndex(page)}
+        disabled={pageIndex === page}
+      >
+        {page + 1}
+      </button>
+    );
+
+    if (totalPages > 0) {
+      // Always show the first page
+      paginationItems.push(renderPageButton(0));
+
+      if (pageIndex > 2 && pageIndex < totalPages - 3) {
+        paginationItems.push(<span key="dots-1">...</span>);
+      }
+
+      let startPage, endPage;
+
+      if (pageIndex >= totalPages - 3) {
+        // Show the last three pages when close to the end
+        startPage = totalPages - 3;
+        endPage = totalPages - 1;
+      } else {
+        startPage = Math.max(1, pageIndex - 1);
+        endPage = Math.min(totalPages - 4, pageIndex + 1);
+      }
+
+      // Show pages around the current page or last pages
+      for (let i = startPage; i <= endPage; i++) {
+        paginationItems.push(renderPageButton(i));
+      }
+
+      if (pageIndex < totalPages - 4) {
+        paginationItems.push(<span key="dots-2">...</span>);
+      }
+
+      // Show the last page button only if it's not the current page
+      if (pageIndex < totalPages - 1) {
+        paginationItems.push(renderPageButton(totalPages - 1));
+      }
+    }
+
+    return (
+      <div className="flex flex-wrap gap-4 items-center justify-center mt-8 w-full px-4">
+        <button
+          className="rounded-full w-8 h-8 flex justify-center items-center focus:text-white focus:bg-[#0041a3]"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          <FontAwesomeIcon icon={faChevronLeft} className="text-lg" />
+        </button>
+        {paginationItems}
+        <button
+          className="rounded-full w-8 h-8 flex justify-center items-center focus:text-white focus:bg-[#0041a3]"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          <FontAwesomeIcon
+            icon={faChevronLeft}
+            className="text-lg rotate-180"
+          />
+        </button>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="3xl:w-full rounded-md border overflow-x-auto">
@@ -85,61 +162,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {/* pagination */}
-      <div className="flex flex-wrap gap-4 items-center justify-center mt-8 w-full px-4">
-        <button
-          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
-          onClick={() => table.previousPage()}
-        >
-          <FontAwesomeIcon icon={faChevronLeft} className="text-lg" />
-        </button>
-        <button
-          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
-          onClick={() => table.setPageIndex(0)}
-        >
-          1
-        </button>
-        <button
-          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
-          onClick={() => table.setPageIndex(1)}
-        >
-          2
-        </button>
-        <button
-          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
-          onClick={() => table.setPageIndex(2)}
-        >
-          3
-        </button>
-        <button
-          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
-          onClick={() => {}}
-        >
-          ...
-        </button>
-        <button
-          className="rounded-full w-8 h-8 flex justify-center items-center  focus:text-white  focus:bg-[#0041a3]"
-          onClick={() => table.nextPage()}
-        >
-          <FontAwesomeIcon
-            icon={faChevronLeft}
-            className="text-lg rotate-180"
-          />
-        </button>
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={(e) => {
-            table.setPageSize(Number(e.target.value));
-            console.log(table.getPageCount());
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              {pageSize}
-            </option>
-          ))}
-        </select>
-      </div>
+      {/* Custom Pagination */}
+      <CustomPagination />
     </>
   );
 }

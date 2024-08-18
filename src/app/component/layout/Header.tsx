@@ -65,6 +65,99 @@ const Header: React.FC = () => {
       </div>
 
       <div className="flex sm:flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 2xl:grid 2xl:grid-cols-2 mt-8">
+        <div className="border border-[#ECEFF1]">
+          <div>
+            <h1 className="text-base font-semibold ml-6 mt-4">
+              Top gainer (24h)
+            </h1>
+          </div>
+          <div className="flex justify-between items-center ml-6 mr-6 mt-6 mb-4">
+            <div className="flex gap-2 ">
+              <div>
+                <Image
+                  src={topGainer.image}
+                  alt="image"
+                  width={32}
+                  height={32}
+                />
+              </div>
+              <div>
+                <h1 className="text-base font-normal">{topGainer.name}</h1>
+                <h2 className="text-sm font-normal mt-1 text-[#3ACC8A]">
+                  %{topGainer.price_change_percentage_24h}
+                </h2>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-base font-normal">
+                ${topGainer.total_volume}
+              </h2>
+              <Image src="/chart5.png" alt="chart" width={60} height={19} />
+            </div>
+          </div>
+        </div>
+        <div className="border border-[#ECEFF1]">
+          <div>
+            <h1 className="text-base font-semibold ml-6 mt-4">
+              Highest volume (24h)
+            </h1>
+          </div>
+          <div className="flex justify-between items-center ml-6 mr-6 mt-6 mb-4">
+            <div className="flex gap-2 ">
+              <div>
+                <Image
+                  src={highestVolume.image}
+                  alt="image"
+                  width={32}
+                  height={32}
+                />
+              </div>
+              <div>
+                <h1 className="text-base font-normal">{highestVolume.name}</h1>
+                <h2 className="text-sm font-normal mt-1 text-[#3ACC8A]">
+                  %{highestVolume.price_change_percentage_24h}
+                </h2>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-base font-normal">
+                ${highestVolume.total_volume}
+              </h2>
+              <Image src="/chart5.png" alt="chart" width={60} height={19} />
+            </div>
+          </div>
+        </div>
+        <div className="border border-[#ECEFF1]">
+          <div>
+            <h1 className="text-base font-semibold ml-6 mt-4">
+              Low Volume (24h)
+            </h1>
+          </div>
+          <div className="flex justify-between items-center ml-6 mr-6 mt-6 mb-4">
+            <div className="flex gap-2 ">
+              <div>
+                <Image
+                  src={lowestVolume.image}
+                  alt="image"
+                  width={32}
+                  height={32}
+                />
+              </div>
+              <div>
+                <h1 className="text-base font-normal">{lowestVolume.name}</h1>
+                <h2 className="text-sm font-normal mt-1 text-[#3ACC8A]">
+                  %{lowestVolume.price_change_percentage_24h}
+                </h2>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-base font-normal">
+                ${lowestVolume.total_volume}
+              </h2>
+              <Image src="/chart5.png" alt="chart" width={60} height={19} />
+            </div>
+          </div>
+        </div>
         <div className="flex justify-between pt-8 bg-[#B8C9C8] border border-[#ECEFF1]">
           <div>
             <h1 className="font-semibold text-base text-black max-w-48 ml-6">
@@ -73,51 +166,6 @@ const Header: React.FC = () => {
             <h2 className="font-normal text-sm ml-6 mt-2">
               Learn with Coinbase
             </h2>
-          </div>
-          <div>
-            <Image
-              className="ml-6 mb-0"
-              src="/learn.png"
-              alt="pic"
-              width={113}
-              height={95}
-            />
-          </div>
-        </div>
-        <div className="flex justify-between pt-8  border border-[#ECEFF1]">
-          <div>
-            <h1 className="font-semibold text-base text-black max-w-48 ml-6"></h1>
-            <h2 className="font-normal text-sm ml-6 mt-2"></h2>
-          </div>
-          <div>
-            <Image
-              className="ml-6 mb-0"
-              src="/learn.png"
-              alt="pic"
-              width={113}
-              height={95}
-            />
-          </div>
-        </div>
-        <div className="flex justify-between pt-8  border border-[#ECEFF1]">
-          <div>
-            <h1 className="font-semibold text-base text-black max-w-48 ml-6"></h1>
-            <h2 className="font-normal text-sm ml-6 mt-2"></h2>
-          </div>
-          <div>
-            <Image
-              className="ml-6 mb-0"
-              src="/learn.png"
-              alt="pic"
-              width={113}
-              height={95}
-            />
-          </div>
-        </div>
-        <div className="flex justify-between pt-8  border border-[#ECEFF1]">
-          <div>
-            <h1 className="font-semibold text-base text-black max-w-48 ml-6"></h1>
-            <h2 className="font-normal text-sm ml-6 mt-2"></h2>
           </div>
           <div>
             <Image
