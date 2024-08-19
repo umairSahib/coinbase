@@ -1,13 +1,14 @@
 "use client";
 
+import React, { useEffect } from "react";
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  useReactTable,
   getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
-
 import {
   Table,
   TableBody,
@@ -28,16 +29,29 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<
+    Array<{ id: string; desc: boolean }>
+  >([]);
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting,
   });
+
+  useEffect(() => {
+    table.setPageIndex(0); // Reset to the first page whenever data is filtered
+  }, [data]); // Run this effect when the data changes
 
   const CustomPagination = () => {
     const { pageIndex } = table.getState().pagination;
-    const totalPages = 172; // Total pages are set to 172
+    const totalPages = 172; // Set total pages to 172 as requested
 
     const paginationItems = [];
 
@@ -56,36 +70,28 @@ export function DataTable<TData, TValue>({
 
     if (totalPages > 0) {
       // Always show the first page
-      paginationItems.push(renderPageButton(0));
+      paginationItems.push(renderPageButton(0)); // Page 1
 
-      if (pageIndex > 2 && pageIndex < totalPages - 3) {
+      // Show ellipsis if pageIndex is far from the beginning
+      if (pageIndex > 2) {
         paginationItems.push(<span key="dots-1">...</span>);
       }
 
-      let startPage, endPage;
+      // Show pages around the current page index
+      let startPage = Math.max(1, pageIndex - 1);
+      let endPage = Math.min(totalPages - 2, pageIndex + 1);
 
-      if (pageIndex >= totalPages - 3) {
-        // Show the last three pages when close to the end
-        startPage = totalPages - 3;
-        endPage = totalPages - 1;
-      } else {
-        startPage = Math.max(1, pageIndex - 1);
-        endPage = Math.min(totalPages - 4, pageIndex + 1);
-      }
-
-      // Show pages around the current page or last pages
       for (let i = startPage; i <= endPage; i++) {
         paginationItems.push(renderPageButton(i));
       }
 
-      if (pageIndex < totalPages - 4) {
+      // Show ellipsis if pageIndex is far from the end
+      if (pageIndex < totalPages - 3) {
         paginationItems.push(<span key="dots-2">...</span>);
       }
 
-      // Show the last page button only if it's not the current page
-      if (pageIndex < totalPages - 1) {
-        paginationItems.push(renderPageButton(totalPages - 1));
-      }
+      // Always show the last page
+      paginationItems.push(renderPageButton(totalPages - 1)); // Last page
     }
 
     return (
@@ -120,24 +126,53 @@ export function DataTable<TData, TValue>({
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                  <TableHead
+                    key={header.id}
+                    onClick={() => {
+                      const isSorted = table
+                        .getState()
+                        .sorting.find((sort) => sort.id === header.id);
+                      const desc = isSorted ? !isSorted.desc : false;
+                      setSorting([{ id: header.id, desc }]);
+                    }}
+                    className={`cursor-pointer ${
+                      table
+                        .getState()
+                        .sorting.find((sort) => sort.id === header.id)
+                        ? table
+                            .getState()
+                            .sorting.find((sort) => sort.id === header.id)?.desc
+                          ? "bg-gray-200"
+                          : "bg-gray-100"
+                        : ""
+                    }`}
+                  >
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                    {table
+                      .getState()
+                      .sorting.find((sort) => sort.id === header.id) ? (
+                      table
+                        .getState()
+                        .sorting.find((sort) => sort.id === header.id)?.desc ? (
+                        <span> 🔽</span>
+                      ) : (
+                        <span> 🔼</span>
+                      )
+                    ) : null}
                   </TableHead>
                 ))}
               </TableRow>
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
+                  data-state={row.getIsSelected() ? "selected" : ""}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -162,7 +197,6 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {/* Custom Pagination */}
       <CustomPagination />
     </>
   );

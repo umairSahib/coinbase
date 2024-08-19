@@ -47,14 +47,17 @@ export default function DemoPage() {
     fetchData();
   }, []);
   function handleFilterData(val: string) {
-    if (val === "Tradable") {
-      const tradAble = data.filter(
-        (obj) => obj.price_change_percentage_24h > 0
-      );
-      console.log("🚀 ~ tradAble ~ tradAble:", tradAble);
-    }
     if (val === "Gainers") {
+      const gainers = data.filter((obj) => obj.price_change_percentage_24h > 0);
+      console.log("🚀 ~ tradAble ~ tradAble:", gainers);
+      setData(gainers);
     }
+
+    // if (val === "Losers") {
+    //   const losers = data.filter((obj) => obj.);
+
+    //   setData(losers);
+    // }
   }
   return (
     <>
