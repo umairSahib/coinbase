@@ -12,7 +12,10 @@ const Navigation: React.FC<NavigationProps> = ({ handleFilterData }) => {
     <>
       <div className="pt-6 pl-10 pr-10 sm:pl-2 sm:pr-2 md:pl-4 md:pr-4 lg:pl-10 lg:pr-10 flex justify-between">
         <div className="flex gap-3">
-          <button className="pt-1 pr-6 pb-1 pl-6 bg-[#2f3b58] font-semibold text-sm text-[#0052FF] rounded-3xl">
+          <button
+            onClick={() => handleFilterData("allAssets")}
+            className="pt-1 pr-6 pb-1 pl-6 bg-[#F1F5FE] font-semibold text-sm text-[#0052FF] rounded-3xl"
+          >
             All assets
           </button>
 

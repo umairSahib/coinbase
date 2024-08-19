@@ -35,29 +35,37 @@ async function getData(): Promise<Payment[]> {
 
 export default function DemoPage() {
   const [data, setData] = useState<Payment[]>([]);
+  const [duplicateData, setDuplicateData] = useState<Payment[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await getData();
       setData(result);
-
+      setDuplicateData(result);
       console.log(result, "results");
     };
 
     fetchData();
   }, []);
   function handleFilterData(val: string) {
+    if (val === "allAssets") {
+      setData(duplicateData);
+    }
+
     if (val === "Gainers") {
-      const gainers = data.filter((obj) => obj.price_change_percentage_24h > 0);
+      const gainers = duplicateData.filter(
+        (obj) => obj.price_change_percentage_24h > 0
+      );
       console.log("🚀 ~ tradAble ~ tradAble:", gainers);
       setData(gainers);
     }
 
-    // if (val === "Losers") {
-    //   const losers = data.filter((obj) => obj.);
+    if (val === "Losers") {
+      const losers = duplicateData.filter((obj) => obj.low_24h > 1000);
+      console.log("🚀 ~ handleFilterData ~ losers:", losers);
 
-    //   setData(losers);
-    // }
+      setData(losers);
+    }
   }
   return (
     <>

@@ -15,6 +15,7 @@ export type Payment = {
   high_24h: number;
   total_volume: number;
   image: string;
+  low_24h: number;
 };
 const formattedDate = dayjs().format("YYYY-MM-DD");
 
