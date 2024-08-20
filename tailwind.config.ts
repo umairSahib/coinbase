@@ -1,3 +1,4 @@
+import flowbite from "flowbite/plugin";
 import type { Config } from "tailwindcss"
 
 const config = {
@@ -7,6 +8,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    "./node_modules/flowbite-react/lib/**/*.js"
 	],
   prefix: "",
   theme: {
@@ -80,7 +82,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), flowbite],
 } satisfies Config
 
 export default config

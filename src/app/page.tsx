@@ -5,6 +5,8 @@ import Page from "./payment/Page";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Navigation from "./component/Navigation";
+import FlowBite from "./component/FlowBite";
+import Bitcoin from "./component/layout/CoinDetails";
 config.autoAddCss = false;
 
 const page = () => {
@@ -13,9 +15,11 @@ const page = () => {
   return (
     <>
       {/* <Navbar /> */}
-      <Header />
-      <Page />
+      {/* <Header /> */}
+      {/* <Page /> */}
       {/* <Navigation /> */}
+      <Bitcoin />
+      {/* <FlowBite /> */}
     </>
   );
 };

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./component/layout/Navbar";
+import { Flowbite, ThemeModeScript } from "flowbite-react";
+// import { flowbiteTheme } from "./theme";
 import {
   ClerkProvider,
   SignIn,
@@ -26,6 +28,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+          <ThemeModeScript />
+        </head>
         <body className={inter.className}>
           <header></header>
           <main>
@@ -43,8 +48,9 @@ export default function RootLayout({
                 <UserButton />
                 You can add User specific content or components here
               */}
-              <Navbar />
-              {children}
+              {/* <Navbar /> */}
+              <Flowbite>{children}</Flowbite>
+              {/* {children} */}
             </SignedIn>
           </main>
         </body>
